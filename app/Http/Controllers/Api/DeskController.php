@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\DeskStoreRequest;
 use App\Http\Resources\DeskResource;
 use App\Models\Desk;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 class DeskController extends Controller
@@ -64,8 +65,10 @@ class DeskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Desk $desk)
     {
-        //
+        $desk->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
